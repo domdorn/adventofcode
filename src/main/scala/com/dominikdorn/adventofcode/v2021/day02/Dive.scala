@@ -44,6 +44,10 @@ object Dive {
     position = calcPosition(parsed)
   } yield position.distanceTravelled
 
-
+  def readExerciseMovements = for {
+    rawInput <- AdventCommons.readFile(Dive.getClass, "exerciseMovements.txt").useNow
+    parsed <- ZIO.attempt(parseMovements(rawInput))
+    position = calcPosition(parsed)
+  } yield position.distanceTravelled
 
 }

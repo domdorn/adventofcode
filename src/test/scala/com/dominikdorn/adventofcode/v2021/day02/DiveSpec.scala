@@ -9,6 +9,13 @@ object DiveSpec extends DefaultRunnableSpec {
       for {
         n <- Dive.readSampleMovements
       } yield assertTrue(n == 150)
-    }
+    },
+    test("should correctly calculate using the exercise inputs") {
+      for {
+        n <- Dive.readExerciseMovements
+      } yield assertTrue(n == 2102357)
+    },
+
+
   )
 }
