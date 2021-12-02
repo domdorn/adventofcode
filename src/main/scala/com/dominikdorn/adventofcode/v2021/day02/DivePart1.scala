@@ -3,7 +3,7 @@ package com.dominikdorn.adventofcode.v2021.day02
 import com.dominikdorn.adventofcode.v2021.AdventCommons
 import zio.ZIO
 
-object Dive {
+object DivePart1 {
   sealed trait Direction
   case object Direction {
     case object Up extends Direction
@@ -39,13 +39,13 @@ object Dive {
   def calcPosition(movements: Seq[Movement]): Position = movements.foldLeft(Position.initial)((position, movement) => position.move(movement))
 
   def readSampleMovements = for {
-    rawInput <- AdventCommons.readFile(Dive.getClass, "sampleMovements.txt").useNow
+    rawInput <- AdventCommons.readFile(DivePart1.getClass, "sampleMovements.txt").useNow
     parsed <- ZIO.attempt(parseMovements(rawInput))
     position = calcPosition(parsed)
   } yield position.distanceTravelled
 
   def readExerciseMovements = for {
-    rawInput <- AdventCommons.readFile(Dive.getClass, "exerciseMovements.txt").useNow
+    rawInput <- AdventCommons.readFile(DivePart1.getClass, "exerciseMovements.txt").useNow
     parsed <- ZIO.attempt(parseMovements(rawInput))
     position = calcPosition(parsed)
   } yield position.distanceTravelled
