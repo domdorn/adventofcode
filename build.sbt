@@ -3,7 +3,7 @@
 name := "puzzles"
 organization := "com.dominikdorn.adventofcode.v2021"
 
-scalaVersion := "3.1.0"
+scalaVersion := "2.13.7"
 
 val zioVersion = "2.0.0-M6-2"
 
