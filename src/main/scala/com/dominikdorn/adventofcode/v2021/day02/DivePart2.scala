@@ -3,20 +3,26 @@ package com.dominikdorn.adventofcode.v2021.day02
 import com.dominikdorn.adventofcode.v2021.AdventCommons
 import zio.ZIO
 
-object DivePart1 {
+object DivePart2 {
 
-  final case class Position(horizontal: Int, depth: Int) {
+  final case class Position(horizontal: Int, depth: Int, aim: Int) {
     def move(movement: Movement): Position = movement.direction match {
-      case Direction.Up => Position(horizontal, depth - movement.steps)
-      case Direction.Down => Position(horizontal, depth + movement.steps)
-      case Direction.Forward => Position(horizontal + movement.steps, depth)
+      case Direction.Up => Position(horizontal, depth, aim - movement.steps)
+      case Direction.Down => Position(horizontal, depth, aim + movement.steps)
+      case Direction.Forward =>
+        Position(
+          horizontal + movement.steps,
+          depth + (aim * movement.steps),
+          aim
+        )
     }
 
     def distanceTravelled: Int = horizontal * depth
   }
   object Position {
-    val initial: Position = Position(0, 0)
+    val initial: Position = Position(0, 0, 0)
   }
+
 
 
   def calcPosition(movements: Seq[Movement]): Position =
